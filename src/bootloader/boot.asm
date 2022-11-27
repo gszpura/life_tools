@@ -36,6 +36,9 @@ init_program:
     ;clc -clears CF flag; does not help for below code when uncommented
     ;int 0 ; other than that we can just call interupt 0x00
     
+    ; reading from disk: http://www.ctyme.com/intr/rb-0607.htm
+    ; need to set ah, al, ch, cl dh registers; dl is automatically set
+    ; es:bx is an address of the thing we want to write from disk
     mov ah, 02h
     mov al, 1
     mov ch, 0

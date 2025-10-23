@@ -14,7 +14,7 @@ ROTATE_ANGLE = 0
 
 def get_items(path):
     items = os.listdir(path)
-    items = [path + i for i in sorted(items)]
+    items = ["/".join([path, i]) for i in sorted(items)]
     items = [i for i in items if os.path.isfile(i)]
     items = [i for i in items if i.endswith('.jpg') or i.endswith('.png')]
     print("Found images:", items, "\n")
@@ -23,7 +23,7 @@ def get_items(path):
 
 def resize(image, resize_ratio):
     if resize_ratio != 1:
-        image = image.resize((int(image.size[0]*resize_ratio), int(image.size[1]*resize_ratio)), Image.ANTIALIAS)
+        image = image.resize((int(image.size[0]*resize_ratio), int(image.size[1]*resize_ratio)), Image.LANCZOS)
     return image
 
 

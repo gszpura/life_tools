@@ -98,3 +98,14 @@ python src/logos/convert_to_brown.py logo_folder/ -b -c "#704214" -o brown_logos
 - `#5D4037` - Brown Grey
 - `#800020` - Burgundy
 - `#2F4F2F` - Dark Slate Gray
+
+
+**STEPS**
+In main dir:
+- python src/logos/apply_gradient.py data/logo_wide.png logo_wide_creamy.png --main 230,227,219 --strength 0.1 
+- python src/logos/apply_gradient.py data/logo_wide.png logo_wide_sepia.png --main 96,72,48 --strength 0.1 
+- python src/logos/create_rotating_gif.py logo_wide_creamy.png -d 0.05 -s 5
+- python src/logos/create_rotating_gif.py logo_wide_sepia.png -d 0.05 -s 5
+- python src/logos/add_text_to_logo.py logo_wide_sepia.png "Lexero" -n 1 --font "Roboto Slab" --size 320 --margin 160 --color 99,74,49
+- python src/logos/add_text_to_logo.py logo_wide_creamy.png "Lexero" -n 1 --font "Roboto Slab" --size 320 --margin 160
+- cp files from subfolders and pack

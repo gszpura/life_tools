@@ -37,14 +37,6 @@ python src/logos/add_text_to_logo.py logo.png "Brand" --font "Geist" --size 200 
 python src/logos/add_text_to_logo.py logo.png "Brand" -n 50
 ```
 
-**Available fonts:**
-- Roboto, Roboto Condensed, Roboto Slab, Roboto Slab Light
-- Open Sans, Montserrat, Lato
-- Geist, Geist Mono, Clear Sans, Comfortaa
-- Fira Code, JetBrains Mono, Cascadia Code
-- Ubuntu, DejaVu Sans, Liberation Sans
-- And many more...
-
 ### 3. Create Rotating GIFs
 Create animated rotating GIFs from your logos:
 
@@ -56,7 +48,14 @@ python src/logos/create_rotating_gif.py logo.png
 python src/logos/create_rotating_gif.py logo.png -d 0.5 -s 45
 ```
 
-### 4. Rotate Static Images
+### 4. Create Rotating GIFs with Slowdown
+Create animated GIFs that spin fast and gradually slow down to a smooth stop with customizable deceleration curves:
+
+```bash
+python src/logos/create_rotating_gif_spline.py logo.png -l 3.0 -c smooth_stop --initial-speed 1440 --hold-still 0.5
+```
+
+### 5. Rotate Static Images
 Generate multiple rotated versions of an image:
 
 ```bash
@@ -67,7 +66,7 @@ python src/logos/rotate_logo.py logo.png
 python src/logos/rotate_logo.py logo.png -d 45
 ```
 
-### 5. Convert Colors
+### 6. Convert Colors
 Convert cream colors to custom target colors:
 
 **Single image conversion:**
@@ -82,30 +81,8 @@ python src/logos/convert_to_brown.py logo_final.png -c "#654321"
 python src/logos/convert_to_brown.py logo_final.png -c "#8B4513" -o logo_brown.png
 ```
 
-**Batch directory conversion:**
-```bash
-# Convert all images in directory
-python src/logos/convert_to_brown.py logo_folder/ -b -c "#5D4037"
 
-# With custom output directory
-python src/logos/convert_to_brown.py logo_folder/ -b -c "#704214" -o brown_logos/
+GIF to MP4 conversion 
 ```
-
-**Popular color examples:**
-- `#8B4513` - Saddle Brown
-- `#654321` - Dark Brown
-- `#704214` - Sepia
-- `#5D4037` - Brown Grey
-- `#800020` - Burgundy
-- `#2F4F2F` - Dark Slate Gray
-
-
-**STEPS**
-In main dir:
-- python src/logos/apply_gradient.py data/logo_wide.png logo_wide_creamy.png --main 230,227,219 --strength 0.1 
-- python src/logos/apply_gradient.py data/logo_wide.png logo_wide_sepia.png --main 96,72,48 --strength 0.1 
-- python src/logos/create_rotating_gif.py logo_wide_creamy.png -d 0.05 -s 5
-- python src/logos/create_rotating_gif.py logo_wide_sepia.png -d 0.05 -s 5
-- python src/logos/add_text_to_logo.py logo_wide_sepia.png "Lexero" -n 1 --font "Roboto Slab" --size 320 --margin 160 --color 99,74,49
-- python src/logos/add_text_to_logo.py logo_wide_creamy.png "Lexero" -n 1 --font "Roboto Slab" --size 320 --margin 160
-- cp files from subfolders and pack
+ffmpeg -i logo_rotation_into.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" logo_rotation_intro.mp4
+```

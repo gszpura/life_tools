@@ -1,4 +1,5 @@
 """
+IMAGES -> PDF
 Example of usage: python3 to_pdf --path ~/data/ --resize 0.3
 """
 from PIL import Image

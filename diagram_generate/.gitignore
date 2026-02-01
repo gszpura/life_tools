@@ -1,6 +1,5 @@
 # Environment variables
 .env
-.idea
 
 # Python
 __pycache__/
